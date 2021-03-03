@@ -1,0 +1,16 @@
+* {
+    margin: 0;
+}
+
+html {
+    background: rgb(34, 34, 34);
+}
+
+h1 {
+    margin-left: 3vh;
+
+    color: white;
+    font-family: 'Playfair Display', serif;
+    font-size: 60px;
+    text-shadow: rgb(0, 0, 0) 5px 4px 7px;
+}
