@@ -13,10 +13,13 @@ document.querySelector(".add-to-library").addEventListener("click", () => {
   addBookToLibrary();
 })
 
-// document.querySelector(".delete-book").addEventListener("click", () => {
-//     const deleteBook = confirm("Are you sure you want to delete this book?");
-//     //CODE STILL NEEDED HERE
-// })
+const removeBook = document.querySelectorAll(".delete-book");
+removeBook.forEach((book) => {
+  book.addEventListener("click", (e) => {
+      console.dir(e.target)
+  })
+})
+
 
 let myLibrary = [];
 
@@ -40,12 +43,13 @@ function addBookToLibrary() {
   const newAddedBook = document.createElement("div");
   bookContainer.appendChild(newAddedBook);
   newAddedBook.classList.add("new-book");
-  
+
   //make div on new book and add class deletebook to it
   const deleteBook = document.createElement("div");
   newAddedBook.appendChild(deleteBook);
   deleteBook.classList.add("delete-book");
   deleteBook.innerHTML = "+";
+  deleteBook.setAttribute("data-index", myLibrary.length - 1);
   
   //make div on new book and add class title to it
   const titleOfBook = document.createElement("div");
@@ -60,12 +64,12 @@ function addBookToLibrary() {
   authorAndPages.innerHTML = `${author}<br>${pages} pages`
 }
 
-function showLibrary(myLibrary) {
-  for(let i = 0; i < myLibrary.length; i++) {
-      let newDiv = document.createElement("div");
-      let newBook = document.createTextNode(myLibrary[i]);
-      bookContainer.appendChild(newDiv);
-      newDiv.appendChild(newBook);
-      newDiv.classList.add("new-book");
-  }
-}
+// function showLibrary(myLibrary) {
+//   for(let i = 0; i < myLibrary.length; i++) {
+//       let newDiv = document.createElement("div");
+//       let newBook = document.createTextNode(myLibrary[i]);
+//       bookContainer.appendChild(newDiv);
+//       newDiv.appendChild(newBook);
+//       newDiv.classList.add("new-book");
+//   }
+// }
