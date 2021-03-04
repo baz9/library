@@ -11,10 +11,10 @@ document.querySelector(".add-to-library").addEventListener("click", () => {
     addBookToLibrary();
 })
 
-document.querySelector(".delete-book").addEventListener("click", () => {
-    const deleteBook = confirm("Are you sure you want to delete this book?");
-    //CODE STILL NEEDED HERE
-})
+// document.querySelector(".delete-book").addEventListener("click", () => {
+//     const deleteBook = confirm("Are you sure you want to delete this book?");
+//     //CODE STILL NEEDED HERE
+// })
 
 let myLibrary = [];
 
@@ -37,7 +37,7 @@ function addBookToLibrary() {
     const newDiv = document.createElement("div");
     bookContainer.appendChild(newDiv);
     newDiv.classList.add("new-book");
-    document.querySelector(".new-book").appendChild(newDiv);
+    newDiv.appendChild(newDiv);
 }
 
 function showLibrary(myLibrary) {
