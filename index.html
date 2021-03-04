@@ -4,14 +4,40 @@
     <meta charset="UTF-8">
     <link href="styles.css" rel="stylesheet" type="text/css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;900&display=swap" rel="stylesheet">
     <title>Library</title>
 </head>
 <body>
-    <div class="title-container">
-        <h1>Library</h1>
+    <header>
+        <h1><span style="color: rgba(0,136,169,1)">my</span>Library</h1>
+        <div class="options">
+            <span id="addbook">Add Book</span>
+            <span id="signin">Sign In</span>
+        </div>
+    </header>
+    <div id="book-container">
+        <!-- <div class="new-book">
+            <div class="delete-book">+</div>
+            <div class="title">Harry Potter anda s hasg asg asgasg s </div>
+            <div class="book-headers">
+                <div>author yayaya </div>
+                <div>480 pages</div>
+            </div>
+        </div> -->
     </div>
-
+    <div id="popup-form">
+        <div class="form-content">
+            <div class="close">+</div>
+            <p>Book Title</p>
+            <input class="book-title" type="text" placeholder="">
+            <img src="/images/bookmage.png" style="height: 80px; width: auto;">
+            <p>Author</p>
+            <input class="author" type="text" placeholder="">
+            <p>Pages</p>
+            <input class="pages" type="text" placeholder="">
+            <p class="add-to-library">ADD TO LIBRARY</p>
+        </div>
+    </div>
 <script src="script.js"></script>
 </body>
 </html>
