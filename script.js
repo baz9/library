@@ -1,4 +1,10 @@
-const newAddedBook = document.createElement("div");
+let bookContainer = document.getElementById("book-container");
+const noBooksDisplay = document.querySelector(".no-books-added");
+// let provider = new firebase.auth.GoogleAuthProvider();
+const signIn = document.getElementById("signin");
+
+let myLibrary = [];
+updateLibrary();
 
 document.getElementById("addbook").addEventListener("click", () => {
   document.getElementById("popup-form").style.display = "flex";
@@ -20,13 +26,11 @@ removeBook.forEach((book) => {
   })
 })
 
-
-let myLibrary = [];
-
 function Book(bookTitle, bookAuthor, bookPages) {
-  this.book = bookTitle;
+  this.title = bookTitle;
   this.author = bookAuthor;
   this.pages = bookPages;
+  this.readStatus = false;
 }
 
 function addBookToLibrary() {
@@ -37,39 +41,85 @@ function addBookToLibrary() {
   myLibrary.push(
       new Book(title, author, pages)
       );
-
-  //make div and add class new-book to it
-  const bookContainer = document.getElementById("book-container");
-  const newAddedBook = document.createElement("div");
-  bookContainer.appendChild(newAddedBook);
-  newAddedBook.classList.add("new-book");
-
-  //make div on new book and add class deletebook to it
-  const deleteBook = document.createElement("div");
-  newAddedBook.appendChild(deleteBook);
-  deleteBook.classList.add("delete-book");
-  deleteBook.innerHTML = "+";
-  deleteBook.setAttribute("data-index", myLibrary.length - 1);
   
-  //make div on new book and add class title to it
-  const titleOfBook = document.createElement("div");
-  newAddedBook.appendChild(titleOfBook);
-  titleOfBook.classList.add("title");
-  titleOfBook.innerHTML = title;
-  
-  //make div on new book and add class book-headers to it
-  const authorAndPages = document.createElement("div");
-  newAddedBook.appendChild(authorAndPages);
-  authorAndPages.classList.add("book-headers");
-  authorAndPages.innerHTML = `${author}<br>${pages} pages`
+  updateLibrary();
 }
 
-// function showLibrary(myLibrary) {
-//   for(let i = 0; i < myLibrary.length; i++) {
-//       let newDiv = document.createElement("div");
-//       let newBook = document.createTextNode(myLibrary[i]);
-//       bookContainer.appendChild(newDiv);
-//       newDiv.appendChild(newBook);
-//       newDiv.classList.add("new-book");
+function updateLibrary(){
+  if (myLibrary.length === 0) {
+    noBooksDisplay.innerHTML = "NO BOOKS ADDED";
+  } else {
+    noBooksDisplay.innerHTML = "";
+  }
+  let html = "";
+  myLibrary.map((book, index) => {
+    html += `<div class="new-book">`;
+    // html += `<span class="read">Read</span><input class="read-status" type="checkbox" onclick="myLibrary[${index}].read()" name="">`
+    html += `<span class="read" onclick="myLibrary[${index}].read()">READ</span>`;
+    html += `<div class="delete-book" data-index="${index}" onclick="deleteBook(this)">+</div>`;
+    html += `<div class="title">${book.title}</div>`;
+    html += `<div class="book-headers">${book.author}<br>${book.pages} pages</div></div>`;
+  })
+  bookContainer.innerHTML = html;
+}
+
+function deleteBook(e) {
+  myLibrary.splice(e.dataset.index, 1);
+  console.log(myLibrary.length);
+  updateLibrary();
+}
+
+// Book.prototype.read = function() {
+//   if(!this.readStatus) {
+//     document.querySelectorAll(".read-status").forEach((checkbox) => {
+//       checked = true;
+//       this.readStatus = true;
+//     })
+//   } else {
+//     document.querySelectorAll(".read-status").forEach((checkbox) => {
+//       checked = false;
+//       this.readStatus = false;
+//     })
 //   }
 // }
+
+Book.prototype.read = function() {
+    if(!this.readStatus) {
+      document.querySelectorAll(".read-status").forEach((readButton) => {
+        readButton.classList.add("read.active")
+        this.readStatus = true;
+        console.log(this.readStatus);
+      })
+    } else {
+      document.querySelectorAll(".read-status").forEach((readButton) => {
+        readButton.classList.remove("read.active")
+        this.readStatus = false;
+        console.log(this.readStatus);
+      })
+    }
+  }
+
+  // signIn.addEventListener("click", () => {
+  //   firebase.auth()
+  //   .signInWithPopup(provider)
+  //   .then((result) => {
+  //     /** @type {firebase.auth.OAuthCredential} */
+  //     var credential = result.credential;
+  
+  //     // This gives you a Google Access Token. You can use it to access the Google API.
+  //     var token = credential.accessToken;
+  //     // The signed-in user info.
+  //     var user = result.user;
+  //     // ...
+  //   }).catch((error) => {
+  //     // Handle Errors here.
+  //     var errorCode = error.code;
+  //     var errorMessage = error.message;
+  //     // The email of the user's account used.
+  //     var email = error.email;
+  //     // The firebase.auth.AuthCredential type that was used.
+  //     var credential = error.credential;
+  //     // ...
+  //   });
+  
+  // })
