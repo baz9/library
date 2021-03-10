@@ -1,3 +1,5 @@
-###L I B R A R Y
+L I B R A R Y
 
-A new project to test my knowledge so far. Unsure how this will go and whether or not I'll look at adding any server side support in order for 'users' to add books which can then remain linked to an account.
+Basic library for storing books. Aiming to return to this to factor in proper local storage but am moving on for now.
+
+I learnt a great deal from doing this 'project'. Especially working with DOM to create new elements.
