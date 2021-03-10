@@ -38,19 +38,12 @@ header {
     text-shadow: 0px 0px 10px rgb(255, 255, 255);
 }
 
-#signin {
+#lstorage {
     padding: 9px 25px;
-    background-color: rgba(0,136,169,1);
-    border: none;
-    border-radius: 50px;
-    color: white;
+    color: rgba(0,136,169,1);
     font-family: 'Montserrat', sans-serif;
+    font-style: italic;
     font-weight: 700px;
-}
-
-#signin:hover {
-    box-shadow: 0px 0px 10px 1px rgba(0,136,169,1);
-    cursor: pointer;
 }
 
 .new-book {
@@ -199,7 +192,7 @@ footer {
     top: 5px;
     left: 5px;
     padding: 3px 5px;
-    background-color: rgb(255, 0, 0);
+    background-color: rgb(0, 255, 21);
     border: none;
     border-radius: 50px;
     color: white;
@@ -208,9 +201,8 @@ footer {
     font-weight: 700px;
 }
 
-.read:active,
-.read.active {
-    background-color: rgb(21, 255, 0);
+.notread {
+    background-color: red;
 }
 
 .read:hover {
